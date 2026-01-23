@@ -45,3 +45,20 @@ def diagnose_transformer(gases):
         return "Normal Condition"
     
 
+    # -------------------
+    # Test
+    # -------------------
+if __name__ == "__main__":
+
+    sample_gases = {
+        'H2': 180,
+        'CH4': 90,
+        'C2H2': 2,
+        'C2H4': 40,
+        'C2H6': 50
+    }
+
+    result = diagnose_transformer(sample_gases)
+
+    print("Input Gas Data:", sample_gases)
+    print("Diagnosis Result:", result)
