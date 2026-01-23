@@ -54,16 +54,16 @@ def diagnose_transformer(gases):
 # PART 2: GUI (Streamlit Interface)
 # ==========================================
 
-# 1. Page Configuration (设置网页标题和图标)
+# 1. Page Configuration 
 st.set_page_config(page_title="Transformer Fault Diagnosis", page_icon="⚡")
 
-# 2. Title & Header (标题)
-st.title("⚡ Transformer Fault Diagnosis System")
+# 2. Title & Header 
+st.title("Transformer Fault Diagnosis System")
 st.markdown("**Project:** Rule-Based Expert System for Power Transformer Fault Diagnosis")
 st.markdown("---")
 
-# 3. Sidebar Inputs (侧边栏输入)
-st.sidebar.header("📥 Input Gas Concentrations (ppm)")
+# 3. Sidebar Inputs 
+st.sidebar.header("Input Gas Concentrations (ppm)")
 st.sidebar.markdown("Enter the Dissolved Gas Analysis (DGA) values below:")
 
 # Creating input fields for the 5 gases
@@ -73,7 +73,7 @@ c2h2_val = st.sidebar.number_input("Acetylene (C2H2)", min_value=0.0, value=0.0,
 c2h4_val = st.sidebar.number_input("Ethylene (C2H4)", min_value=0.0, value=0.0, step=1.0)
 c2h6_val = st.sidebar.number_input("Ethane (C2H6)", min_value=0.0, value=0.0, step=1.0)
 
-# 4. Packaging input into dictionary (打包数据传给队友的函数)
+# 4. Packaging input into dictionary 
 input_gases = {
     'H2': h2_val,
     'CH4': ch4_val,
@@ -82,7 +82,7 @@ input_gases = {
     'C2H6': c2h6_val
 }
 
-# 5. Main Display Area (主界面显示)
+# 5. Main Display Area 
 col1, col2 = st.columns(2)
 
 with col1:
@@ -110,4 +110,4 @@ with col2:
 
 # 6. Footer / Credits
 st.markdown("---")
-st.caption("MMU TES6313 Expert Systems Project | Developed by Group [Insert Number]")
+st.caption("MMU TES6313 Expert Systems Project | Developed by Group Cincai")
