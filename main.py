@@ -1,4 +1,5 @@
 import streamlit as st
+import time
 
 # ==========================================
 # PART 1: TEAMMATE'S LOGIC (EXACT COPY)
@@ -55,7 +56,7 @@ def diagnose_transformer(gases):
 # ==========================================
 
 # 1. Page Configuration 
-st.set_page_config(page_title="Transformer Fault Diagnosis", page_icon="⚡")
+st.set_page_config(page_title="Transformer Fault Diagnosis")
 
 # 2. Title & Header 
 st.title("Transformer Fault Diagnosis System")
@@ -78,7 +79,7 @@ input_gases = {
     'H2': h2_val,
     'CH4': ch4_val,
     'C2H2': c2h2_val,
-    'C2H4': c2h4_val,
+    'C2H4': c2h4_val,   
     'C2H6': c2h6_val
 }
 
@@ -93,7 +94,9 @@ with col2:
     st.subheader("Diagnosis Action")
     # The Button to trigger diagnosis
     if st.button("🔍 Run Diagnosis", use_container_width=True):
-        
+        with st.spinner("Wait for it...", show_time=True):
+        time.sleep(5)
+
         # CALLING TEAMMATE'S FUNCTION HERE
         result = diagnose_transformer(input_gases)
         
