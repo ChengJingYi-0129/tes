@@ -89,15 +89,15 @@ col1, col2 = st.columns(2)
 with col1:
     st.subheader("Current Readings")
     st.json(input_gases) # Display input data nicely
-    
-with st.spinner("Wait for it...", show_time=True):
-    time.sleep(5)
+
 
 with col2:
     st.subheader("Diagnosis Action")
     # The Button to trigger diagnosis
     if st.button("🔍 Run Diagnosis", use_container_width=True):
     
+        with st.spinner("Analyzing... Please wait.", show_time=True):
+            time.sleep(2)  # Simulate processing time
 
         # CALLING TEAMMATE'S FUNCTION HERE
         result = diagnose_transformer(input_gases)
