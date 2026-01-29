@@ -43,7 +43,7 @@ def run_clips_logic(input_gases):
 st.set_page_config(page_title="Transformer Fault Diagnosis")
 
 # Header
-st.title("⚡ Transformer Fault Diagnosis")
+st.title("Transformer Fault Diagnosis")
 st.markdown("**Core Engine:** CLIPS (C Language Integrated Production System) 6.4")
 st.markdown("---")
 
