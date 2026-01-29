@@ -1,5 +1,5 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Transformer Fault Diagnosis Expert System (CORRECTED)
+;; Transformer Fault Diagnosis Expert System
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (deftemplate gas (slot name) (slot value))
@@ -111,5 +111,74 @@
    (test (>= ?e 200))
 =>
    (assert (diagnosis (fault "Thermal Fault T3")))
+)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; FINAL OUTPUT RULES 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; 1. Partial Discharge (PD)
+(defrule FINAL-PD
+   (declare (salience -100))
+   (diagnosis (fault "Partial Discharge"))
+=>
+   (printout t "FINAL DIAGNOSIS: PARTIAL DISCHARGE" crlf)
+)
+
+;; 2. High Energy Arcing (D2)
+(defrule FINAL-D2
+   (declare (salience -110))
+   (diagnosis (fault "High Energy Arcing"))
+   (not (diagnosis (fault "Partial Discharge"))) 
+=>
+   (printout t "FINAL DIAGNOSIS: HIGH ENERGY ARCING (D2)" crlf)
+)
+
+;; 3. Low Energy Arcing (D1)
+(defrule FINAL-D1
+   (declare (salience -120))
+   (diagnosis (fault "Low Energy Arcing"))
+   (not (diagnosis (fault "Partial Discharge")))
+   (not (diagnosis (fault "High Energy Arcing")))
+=>
+   (printout t "FINAL DIAGNOSIS: LOW ENERGY ARCING (D1)" crlf)
+)
+
+;; 4. Thermal Fault T3 (>700C)
+(defrule FINAL-T3
+   (declare (salience -130))
+   (diagnosis (fault "Thermal Fault T3"))
+   (not (diagnosis (fault "Partial Discharge")))
+=>
+   (printout t "FINAL DIAGNOSIS: THERMAL FAULT T3 (>700C)" crlf)
+)
+
+;; 5. Thermal Fault T2 (300-700C)
+(defrule FINAL-T2
+   (declare (salience -140))
+   (diagnosis (fault "Thermal Fault T2"))
+   (not (diagnosis (fault "Partial Discharge")))
+   (not (diagnosis (fault "Thermal Fault T3")))
+=>
+   (printout t "FINAL DIAGNOSIS: THERMAL FAULT T2 (300-700C)" crlf)
+)
+
+;; 6. Thermal Fault T1 (<300C)
+(defrule FINAL-T1
+   (declare (salience -150))
+   (diagnosis (fault "Thermal Fault T1"))
+   (not (diagnosis (fault "Partial Discharge")))
+   (not (diagnosis (fault "Thermal Fault T3")))
+   (not (diagnosis (fault "Thermal Fault T2")))
+=>
+   (printout t "FINAL DIAGNOSIS: THERMAL FAULT T1 (<300C)" crlf)
+)
+
+;; 7. Normal Condition (如果没有故障)
+(defrule FINAL-NORMAL
+   (declare (salience -200))
+   (not (diagnosis (fault ?))) 
+=>
+   (printout t "FINAL DIAGNOSIS: NORMAL CONDITION" crlf)
 )
 
