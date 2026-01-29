@@ -84,4 +84,4 @@ with col2:
 
 # Footer
 st.markdown("---")
-st.caption("Multimedia University | TES6313 Expert Systems Project")
+st.caption("Multimedia University | TES6313 Expert Systems Project By Group Cincai")
