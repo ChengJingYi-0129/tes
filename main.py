@@ -6,36 +6,30 @@ import clips # 这里调用 clipspy
 # ==========================================
 def run_clips_logic(input_gases):
     """
-    Load rules.clp, insert user data, and run the engine.
+    Load ExpertSystem.clp, insert user data, and run the engine.
     """
     try:
-        # 创建 CLIPS 环境
+
         env = clips.Environment()
         
-        # 加载规则文件
-        # ⚠️ 确保 rules.clp 和 app.py 在同一个文件夹！
-        env.load('rules.clp') 
-        
-        # 将 Python 的数据转换成 CLIPS 的格式 (Assert Facts)
-        # 对应 rules.clp 里的 (deftemplate gas (slot name) (slot value))
+
+        env.load('ExpertSystem.clp') 
+
         env.assert_string(f'(gas (name H2) (value {input_gases["H2"]}))')
         env.assert_string(f'(gas (name CH4) (value {input_gases["CH4"]}))')
         env.assert_string(f'(gas (name C2H2) (value {input_gases["C2H2"]}))')
         env.assert_string(f'(gas (name C2H4) (value {input_gases["C2H4"]}))')
         env.assert_string(f'(gas (name C2H6) (value {input_gases["C2H6"]}))')
         
-        # 运行引擎 (Run)
+
         env.run()
+
+        diagnosis_result = "Normal Condition" 
         
-        # 从 CLIPS 中提取结果 (Retrieving Facts)
-        diagnosis_result = "Normal Condition" # 默认值
-        
-        # 遍历所有 Facts，寻找 template 是 'diagnosis' 的那个
+
         for fact in env.facts():
             if fact.template.name == 'diagnosis':
                 diagnosis_result = fact['fault']
-                # 找到一个故障后，可以 break，或者收集所有故障
-                # 这里简单起见，取最后一个被触发的故障
         
         return diagnosis_result
 
@@ -76,20 +70,18 @@ with col2:
     if st.button("Run CLIPS Engine", type="primary"):
         with st.spinner("Reasoning with CLIPS rules..."):
             
-            # 调用 CLIPS
             result = run_clips_logic(user_data)
             
-            # 显示结果
             if "Error" in result:
                 st.error(result)
-                st.write("Make sure 'rules.clp' is in the same folder.")
+                st.write("Make sure 'ExpertSystem.clp' is in the same folder.")
             elif result == "Normal Condition":
                 st.success(f"✅ {result}")
             else:
                 st.error(f"⚠️ Fault Detected: **{result}**")
                 
                 # 额外展示一下比率，显得更专业
-                st.info("Logic Source: `rules.clp` file executed successfully.")
+                st.info("Logic Source: `ExpertSystem.clp` file executed successfully.")
 
 # Footer
 st.markdown("---")
