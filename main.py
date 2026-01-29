@@ -120,4 +120,4 @@ with right_col:
 
 # Footer
 st.markdown("---")
-st.caption("MMU TES6313 Expert Systems Project | Developed by Group [Insert Group Number]")
+st.caption("MMU TES6313 Expert Systems Project | Developed by Group Cincai")
