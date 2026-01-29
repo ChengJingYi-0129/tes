@@ -6,15 +6,15 @@ import clips
 # ==========================================
 def run_clips_logic(input_gases):
     """
-    Loads ExpertSystem.clp, inserts user data, and runs the inference engine.
+    Loads inference_engine.clp, inserts user data, and runs the inference engine.
     """
     try:
         # Create CLIPS environment
         env = clips.Environment()
         
         # Load the rules file
-        # ERROR CHECK: Ensure ExpertSystem.clp is in the same directory!
-        env.load('ExpertSystem.clp') 
+        # ERROR CHECK: Ensure inference_engine.clp is in the same directory!
+        env.load('inference_engine.clp') 
         
         # Insert User Data into CLIPS (Asserting Facts)
         # Matches the template: (deftemplate gas (slot name) (slot value))
@@ -94,7 +94,7 @@ with right_col:
             if "Error" in result:
                 st.error("Critical Error")
                 st.code(result)
-                st.warning("Please ensure 'ExpertSystem.clp' is present in the application folder.")
+                st.warning("Please ensure 'inference_engine.clp' is present in the application folder.")
             
             elif result == "Normal Condition":
                 st.success(f"**{result}**")

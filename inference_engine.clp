@@ -87,7 +87,7 @@
 
 ;; ========= THERMAL FAULT T2 (300–700C) =========
 
-(defrule R10-T2-Ethylene-Dominant
+(defrule R9-T2-Ethylene-Dominant
    (gas (name C2H4) (value ?e))
    (gas (name C2H6) (value ?a))
    (test (> ?e ?a))
@@ -96,7 +96,7 @@
    (assert (diagnosis (fault "Thermal Fault T2")))
 )
 
-(defrule R11-T2-Moderate-Ethylene
+(defrule R10-T2-Moderate-Ethylene
    (gas (name C2H4) (value ?e))
    (test (> ?e 50))
    (test (< ?e 200))
@@ -106,7 +106,7 @@
 
 ;; ========= THERMAL FAULT T3 (>700C) =========
 
-(defrule R12-T3-Very-High-Ethylene
+(defrule R11-T3-Very-High-Ethylene
    (gas (name C2H4) (value ?e))
    (test (>= ?e 200))
 =>
