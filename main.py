@@ -65,7 +65,7 @@ with col1:
     }
 
 with col2:
-    st.subheader("🔍 Diagnosis Result")
+    st.subheader("Diagnosis Result")
     
     if st.button("Run CLIPS Engine", type="primary"):
         with st.spinner("Reasoning with CLIPS rules..."):
