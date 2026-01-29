@@ -1,5 +1,4 @@
 import streamlit as st
-import time
 
 # ==========================================
 # PART 1: TEAMMATE'S LOGIC (EXACT COPY)
@@ -96,8 +95,6 @@ with col2:
     # The Button to trigger diagnosis
     if st.button("🔍 Run Diagnosis", use_container_width=True):
     
-        with st.spinner("Analyzing... Please wait.", show_time=True):
-            time.sleep(2)  # Simulate processing time
 
         # CALLING TEAMMATE'S FUNCTION HERE
         result = diagnose_transformer(input_gases)
