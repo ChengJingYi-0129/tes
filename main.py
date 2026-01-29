@@ -1,5 +1,5 @@
 import streamlit as st
-import clips  # Requires: pip install clipspy
+import clips
 
 # ==========================================
 # 1. CLIPS ENGINE FUNCTION
